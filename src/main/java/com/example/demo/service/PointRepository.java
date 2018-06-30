@@ -26,12 +26,12 @@ public class PointRepository extends JdbcDaoSupport {
     }
     
     public List<Point> findAll() {
-    	String sql = "SELECT * FROM univali.indios";
+    	String sql = "SELECT * FROM univali.indio2";
     	List<Map<String, Object>> rows = getJdbcTemplate().queryForList(sql);
     	
     	List<Point> result = new ArrayList<Point>();
 		for(Map<String, Object> row:rows){
-			Point p = new Point((String) row.get("geo"), (Double) row.get("lat"), (Double) row.get("lon"));
+			Point p = new Point((Double) row.get("lat"), (Double) row.get("lon"));
 			result.add(p);
 		}
 

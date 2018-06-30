@@ -48,7 +48,6 @@
 
 			
 			var labels = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-/*
 			var markers = locations.map(function(location, i) {
 				return new google.maps.Marker({
 					position : location,
@@ -62,10 +61,11 @@
 				markers,
 				{ imagePath : 'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m'}
 			);
-*/
+/*
 			for (i = 0; i < locations.length; i++){
 				var marker = new google.maps.Marker({position: locations[i], map: map})
 			}
+*/
 			google.maps.event.trigger(map, 'resize');
 		}
     	var locations = loadPoints(); 

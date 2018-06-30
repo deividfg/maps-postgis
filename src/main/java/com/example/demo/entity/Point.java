@@ -3,39 +3,30 @@ package com.example.demo.entity;
 
 public class Point {
 	
-	private String geo;
 	private Double lat;
-	private Double lon;
+	private Double lng;
 	
 	
 	public Point() {
 		super();
 	}
 	
-	public Point(String geo, Double lat, Double lon) {
+	public Point(Double lat, Double lng) {
 		this();
-		this.geo = geo;
 		this.lat = lat;
-		this.lon = lon;
+		this.lng = lng;
 	}
 	
-	
-	public String getGeo() {
-		return geo;
-	}
-	public void setGeo(String geo) {
-		this.geo = geo;
-	}
 	public Double getLat() {
 		return lat;
 	}
 	public void setLat(Double lat) {
 		this.lat = lat;
 	}
-	public Double getLon() {
-		return lon;
+	public Double getLng() {
+		return lng;
 	}
-	public void setLon(Double lon) {
-		this.lon = lon;
+	public void setLng(Double lng) {
+		this.lng = lng;
 	}
 }
