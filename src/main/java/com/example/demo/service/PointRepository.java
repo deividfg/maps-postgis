@@ -17,7 +17,8 @@ import com.example.demo.entity.Point;
 @Repository
 public class PointRepository extends JdbcDaoSupport {
  
-    @Autowired 
+    private static final String SCHEMA = "univali";
+	@Autowired 
     DataSource dataSource;
  
     @PostConstruct
@@ -25,8 +26,9 @@ public class PointRepository extends JdbcDaoSupport {
         setDataSource(dataSource);
     }
     
-    public List<Point> findAll() {
-    	String sql = "SELECT * FROM univali.indio2";
+    public List<Point> findAll(String fonte) {
+    	String sql = "SELECT * FROM " + SCHEMA + "." + fonte;
+    	System.out.println("Finding...  " + sql);
     	List<Map<String, Object>> rows = getJdbcTemplate().queryForList(sql);
     	
     	List<Point> result = new ArrayList<Point>();

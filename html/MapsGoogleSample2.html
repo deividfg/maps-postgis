@@ -22,10 +22,16 @@
   <body>
     <div id="map"></div>
     <script>
+    	var url = "http://localhost:8080/pointing";
+    	// var fonte = ${sessionScope.fonte};  //
+    	var fonte = null;
+    	
 		function loadPoints(){
 			var xmlhttp = new XMLHttpRequest();
 		    xmlhttp.onreadystatechange = callbackFunction(xmlhttp);
-		    xmlhttp.open("POST", "http://localhost:8080/pointing", false);
+		    
+		    if (fonte = null) fonte = "indios"
+		    xmlhttp.open("POST", url + "?fonte=" + fonte, false);
 		    xmlhttp.setRequestHeader("Content-Type", "application/json");
 		    xmlhttp.send();
 		    //alert(xmlhttp.responseText);
