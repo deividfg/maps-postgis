@@ -30,7 +30,8 @@
 			var xmlhttp = new XMLHttpRequest();
 		    xmlhttp.onreadystatechange = callbackFunction(xmlhttp);
 		    
-		    if (fonte = null) fonte = "indios"
+		    if (fonte == null) fonte = "indios"
+		    console.log(fonte);
 		    xmlhttp.open("POST", url + "?fonte=" + fonte, false);
 		    xmlhttp.setRequestHeader("Content-Type", "application/json");
 		    xmlhttp.send();
