@@ -27,4 +27,13 @@ public class PointController {
     		return new ArrayList<Point>();
     	return pointRepository.findAll(fonte);
     }
+    
+    @GetMapping
+    @CrossOrigin
+    @RequestMapping("/insert")
+    public void insert(@RequestParam (value="fonte", defaultValue="indios") String fonte,
+    				   @RequestParam (value="lat") String lat,
+    				   @RequestParam (value="lng") String lng) {
+    	pointRepository.insert(fonte, lat, lng);
+    }
 }

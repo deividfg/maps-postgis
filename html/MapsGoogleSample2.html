@@ -23,6 +23,7 @@
     <div id="map"></div>
     <script>
     	var url = "http://localhost:8080/pointing";
+    	var urlInsert = "http://localhost:8080/insert";
     	// var fonte = ${sessionScope.fonte};  //
     	var fonte = null;
     	
@@ -38,6 +39,18 @@
 		    //alert(xmlhttp.responseText);
 		    console.log(xmlhttp.responseText);
 		    return JSON.parse(xmlhttp.responseText);
+		}
+		
+		function insertPoint(latLng){
+			var xmlhttp = new XMLHttpRequest();
+		    xmlhttp.onreadystatechange = callbackFunction(xmlhttp);
+		    
+		    if (fonte == null) fonte = "indios"
+		    xmlhttp.open("POST", urlInsert + "?fonte=" + fonte + "&lat=" + latLng.lat() + "&lng=" + latLng.lng(), false);
+		    xmlhttp.setRequestHeader("Content-Type", "application/json");
+		    xmlhttp.send();
+		    //alert(xmlhttp.responseText);
+		    console.log(xmlhttp.responseText);
 		}
 		
 		function callbackFunction(xmlhttp){
@@ -74,7 +87,21 @@
 			}
 */
 			google.maps.event.trigger(map, 'resize');
+			
+			map.addListener('click', function(e) {
+				placeMarker(e.latLng, map);
+			});
 		}
+		
+		function placeMarker(latLng, map) {
+	        var marker = new google.maps.Marker({
+	          position: latLng,
+	          map: map
+	        });
+	        map.panTo(latLng);
+	        insertPoint(latLng);
+	    }
+
     	var locations = loadPoints(); 
 			
 		

@@ -33,6 +33,17 @@
 		    return JSON.parse(xmlhttp.responseText);
 		}
 		
+		function insertPoint(latLng){
+			var xmlhttp = new XMLHttpRequest();
+		    xmlhttp.onreadystatechange = callbackFunction(xmlhttp);
+		    
+		    xmlhttp.open("POST", "http://localhost:8080/insert?lat=" + latLng.lat() + "&lng=" + latLng.lng(), false);
+		    xmlhttp.setRequestHeader("Content-Type", "application/json");
+		    xmlhttp.send();
+		    //alert(xmlhttp.responseText);
+		    console.log(xmlhttp.responseText);
+		}
+		
 		function callbackFunction(xmlhttp){
 		  //  alert("Z" + xmlhttp.responseXML);
 		}
@@ -67,10 +78,22 @@
 				var marker = new google.maps.Marker({position: locations[i], map: map})
 			}
 			google.maps.event.trigger(map, 'resize');
-		}
-    	var locations = loadPoints(); 
 			
+			map.addListener('click', function(e) {
+				placeMarker(e.latLng, map);
+			});
+		}
 		
+		function placeMarker(latLng, map) {
+	        var marker = new google.maps.Marker({
+	          position: latLng,
+	          map: map
+	        });
+	        map.panTo(latLng);
+	        insertPoint(latLng);
+	    }
+		
+    	var locations = loadPoints(); 
 		
 	</script>
     <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>

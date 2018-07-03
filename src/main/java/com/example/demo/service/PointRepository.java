@@ -39,6 +39,11 @@ public class PointRepository extends JdbcDaoSupport {
 
     	return result;
     }
-    
-    
+
+	public void insert(String fonte, String lat, String lng) {
+		String sql = "INSERT INTO " + SCHEMA + "." + fonte + "(lat, lon, geo) VALUES (" + lat + ", " + lng
+				+ ", ST_GeomFromText('POINT('||'" + lng + "'||' '||'" + lat + "'||')', 4326)); ";
+    	System.out.println("Inserting...  " + sql);
+    	getJdbcTemplate().execute(sql);
+	}
 }
